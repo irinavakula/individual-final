@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import es.santander.ascender.final_individual.models.Book;
 import es.santander.ascender.final_individual.services.BookService;
 
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -23,21 +26,26 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping
+    //@Secured("ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     public Book create(@RequestBody Book book) {
         return bookService.saveBook(book);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Book retrive(@PathVariable ("id") Long id) {
         return bookService.retriveBook(id);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Book update(@PathVariable("id") Long id, @RequestBody Book book) {
         return bookService.updateBook(id, book);
     }
  
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String delete(@PathVariable("id") Long id) {
         bookService.deleteBook(id);
         return "delete";
