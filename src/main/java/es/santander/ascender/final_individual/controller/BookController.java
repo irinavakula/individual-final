@@ -16,7 +16,7 @@ import es.santander.ascender.final_individual.models.Book;
 import es.santander.ascender.final_individual.services.BookService;
 
 @RestController
-@RequestMapping("/api/book")
+@RequestMapping("/api/books")
 public class BookController {
 
     @Autowired 

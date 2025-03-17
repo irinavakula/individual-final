@@ -12,3 +12,6 @@ backend server address
 
 http://localhost:8080/productos/
 
+
+
+пофіксити 200 в get id (пи видаленні повертає 200)
